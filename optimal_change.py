@@ -5,6 +5,8 @@ def optimal_change(item_cost, amount_paid):
         return f"For an item that costs ${item_cost} with an amount paid of ${amount_paid}, there is no change required."
     else:
         change_owed = int((amount_paid * 100) - (item_cost * 100))
+        answer_prefix = f"The optimal change for an item that costs ${item_cost} with an amount paid of ${amount_paid} is "
+        answer = ""
         
         change_to_be_returned = []
         register = {
@@ -30,29 +32,59 @@ def optimal_change(item_cost, amount_paid):
         
 
 
-        number_of_each_coin = {i: change_to_be_returned.count(i) for i in register}
-        return number_of_each_coin
+        number_of_each_coin = {i: change_to_be_returned.count(i) for i in register if change_to_be_returned.count(i) > 0}
 
-        # {'hundred': 0, 'fifty': 0, 'twenty': 0, 'ten': 1, 'five': 1, 'one': 3, 'quarter': 1, 'dime': 2, 'nickel': 0, 'penny': 4}
+            
+        for i in number_of_each_coin:
+            if register[i] >= 100:
+                if number_of_each_coin[i] > 1:
+                    answer += f"{number_of_each_coin[i]} ${register[i] // 100} bills, "
+                else:
+                    answer += f"1 ${register[i] // 100} bill, "
+            elif register[i] > 1:
+                if number_of_each_coin[i] > 1:
+                    answer += f"{number_of_each_coin[i]} {i}s, "
+                else:
+                    answer += f"1 {i}, "
+            else:
+                if number_of_each_coin[i] > 1:
+                    answer += f"and {number_of_each_coin[i]} pennies"
+                else:
+                    answer += f"and 1 penny"
+                
+            
+        
+        return answer_prefix + answer + "."
+
         
 
 
-        answer_prefix = f"The optimal change for an item that costs ${item_cost} with amount paid of ${amount_paid} is"
-        # answer = f"{}"
-        # return f"{answer_prefix}{num_of_100s if num_of_100s > 0 else ''} $100 bill{'s' if num_of_100s > 1 else ''}{num_of_50s if num_of_50s > 0 else ''}"
-        # return answer_prefix + answer
 
-print(optimal_change(31.51,50))
-
-# "The optimal change for an item that costs $31.51 with an amount paid of $50 is 1 $10 bill, 1 $5 bill, 3 $1 bills, 1 quarter, 2 dimes, and 4 pennies."
-# ['ten', 'five', 'one', 'one', 'one', 'quarter', 'dime', 'dime', 'penny', 'penny', 'penny', 'penny']
+print(optimal_change(9, 10))
 
 
 
-# bill vs bills
-# quarter vs quarters
-# dime vs dimes
-# penny vs pennies
 
+# comment your code
+# fix last test case
 
-
+# if register[i] == 25:
+                #     if number_of_each_coin[i] > 1:
+                #         answer += f"{number_of_each_coin[i]} quarters, "
+                #     else:
+                #         answer += "1 quarter, "
+                # elif register[i] == 10:
+                #     if number_of_each_coin[i] > 1:
+                #         answer += f"{number_of_each_coin[i]} dimes, "
+                #     else:
+                #         answer += "1 dime, "
+                # elif register[i] == 5:
+                #     if number_of_each_coin[i] > 1:
+                #         answer += f"{number_of_each_coin[i]} nickels, "
+                #     else:
+                #         answer += "1 nickel, "
+                # elif register[i] == 1:
+                #     if number_of_each_coin[i] > 1:
+                #         answer += f"and {number_of_each_coin[i]} pennies."
+                #     else:
+                #         answer += "and 1 penny."
