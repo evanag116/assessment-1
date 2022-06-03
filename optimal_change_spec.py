@@ -6,4 +6,4 @@ print("2:", optimal_change(31.51, 50) == "The optimal change for an item that co
 print("3:", optimal_change(50, 31.51) == "Error: please provide sufficient payment.")
 print("4:", optimal_change(49.91, 192) == "The optimal change for an item that costs $49.91 with an amount paid of $192 is 1 $100 bill, 2 $20 bills, 2 $1 bills, 1 nickel, and 4 pennies.")
 print("5:", optimal_change(10.72, 10.72) == "For an item that costs $10.72 with an amount paid of $10.72, there is no change required.")
-print("6:", optimal_change(9.99, 10) == "The optimal change for an item that costs $9.99 with an amount paid of $10 is 1 penny.")
+print("6:", optimal_change(9, 10) == "The optimal change for an item that costs $9 with an amount paid of $10 is 1 $1 bill.")
